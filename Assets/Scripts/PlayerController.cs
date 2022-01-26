@@ -8,4 +8,5 @@ public class PlayerController : MonoBehaviour
     public bool isReloading;
     public bool isJumping;
     public bool isRunning;
+    public bool isAiming;
 }
