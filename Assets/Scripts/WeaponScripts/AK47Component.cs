@@ -9,9 +9,13 @@ public class AK47Component : WeaponComponent
         
         Vector3 hitLocation;
 
-        if (weaponStats.bulletsInClip > 0 && !isReloading && !weaponHolder.playerController.isRunning)
+        if (weaponStats.bulletsInClip > 0 && !isReloading)
         {
             base.FireWeapon();
+            if (firingEffect)
+            {
+                firingEffect.Play();
+            }
             Ray screenRay = mainCamera.ViewportPointToRay(new Vector2(0.5f, 0.5f));
             if (Physics.Raycast(screenRay, out RaycastHit hit, weaponStats.fireDistance, weaponStats.weaponHitLayers))
             {
@@ -22,7 +26,7 @@ public class AK47Component : WeaponComponent
         }
         else if(weaponStats.bulletsInClip <= 0)
         {
-            //trigger a reload when no bullets left
+            //trigger a reload when no bullets left in clip
             weaponHolder.StartReloading();
         }
     }
