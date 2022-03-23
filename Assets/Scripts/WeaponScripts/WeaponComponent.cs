@@ -82,7 +82,7 @@ public class WeaponComponent : MonoBehaviour
     protected virtual void FireWeapon()
     {        
         weaponStats.bulletsInClip--;
-        print(weaponStats.bulletsInClip);
+        //print(weaponStats.bulletsInClip);
     }
 
     public virtual void StartReloading()

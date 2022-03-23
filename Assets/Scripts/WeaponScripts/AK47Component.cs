@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class AK47Component : WeaponComponent
 {
+    Vector3 hitLocation;
     protected override void FireWeapon()
-    {
-        
-        Vector3 hitLocation;
+    {     
 
         if (weaponStats.bulletsInClip > 0 && !isReloading)
         {
@@ -20,6 +19,7 @@ public class AK47Component : WeaponComponent
             if (Physics.Raycast(screenRay, out RaycastHit hit, weaponStats.fireDistance, weaponStats.weaponHitLayers))
             {
                 hitLocation = hit.point;
+                DealDamage(hit);
                 Vector3 hitDirection = hit.point - mainCamera.transform.position;
                 Debug.DrawRay(mainCamera.transform.position, hitDirection.normalized * weaponStats.fireDistance, Color.red, 1);
             }
@@ -29,5 +29,18 @@ public class AK47Component : WeaponComponent
             //trigger a reload when no bullets left in clip
             weaponHolder.StartReloading();
         }
+
+
+    }
+
+    void DealDamage(RaycastHit hitInfo)
+    {
+        IDamageable damageable = hitInfo.collider.GetComponent<IDamageable>();
+        damageable?.TakeDamage(weaponStats.damage);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(hitLocation, 0.1f);
     }
 }
