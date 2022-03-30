@@ -5,8 +5,8 @@ using UnityEngine;
 public class SpawnerVolume : MonoBehaviour
 {
     BoxCollider boxCollider;
-    // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
         boxCollider = GetComponent<BoxCollider>();
     }
