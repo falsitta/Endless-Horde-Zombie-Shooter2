@@ -15,8 +15,8 @@ MonoBehaviour:
   name: AK-47
   itemCategory: 1
   itemPrefab: {fileID: 9099710181228178402, guid: 10db3b31f0c8b824b97cc583f8aaedc9, type: 3}
-  stackable: 0
-  maxSize: 1
+  stackable: 1
+  maxSize: 500
   amountValue: 1
   weaponStats:
     weaponType: 2
@@ -26,7 +26,7 @@ MonoBehaviour:
     bulletsInClip: 30
     clipSize: 30
     fireStartDelay: 0
-    fireRate: 0.25
+    fireRate: 0.1
     fireDistance: 500
     repeating: 1
     weaponHitLayers:

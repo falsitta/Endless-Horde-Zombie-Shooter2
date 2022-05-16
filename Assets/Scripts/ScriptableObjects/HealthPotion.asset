@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c46b21463a068da46afca13cd2d639f1, type: 3}
+  m_Script: {fileID: 11500000, guid: 20670edce54f0fe4d9250ab4fa23cb5d, type: 3}
   m_Name: HealthPotion
   m_EditorClassIdentifier: 
-  name: Item
+  name: Health Potion
   itemCategory: 2
   itemPrefab: {fileID: 615468085236696886, guid: a329bfd1ac115514a9ef4860bce9fd8c, type: 3}
   stackable: 1

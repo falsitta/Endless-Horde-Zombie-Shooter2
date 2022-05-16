@@ -13,6 +13,7 @@ public class ConsumableScriptable : ItemScript
         // check to see if the player is at max health, then return
         //heal player with potion
 
+
         SetAmount(amountValue - 1);
 
         if (amountValue <= 0)

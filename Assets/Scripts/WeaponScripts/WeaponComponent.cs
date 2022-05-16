@@ -34,7 +34,7 @@ public class WeaponComponent : MonoBehaviour
     public Transform gripLocation;
     public WeaponStats weaponStats;
 
-    protected WeaponHolder weaponHolder;
+    public WeaponHolder weaponHolder;
     [SerializeField]
     protected ParticleSystem firingEffect;
 
@@ -49,9 +49,15 @@ public class WeaponComponent : MonoBehaviour
         mainCamera = Camera.main;
     }
 
-    public void Initialize(WeaponHolder _weaponHolder)
+    public void Initialize(WeaponHolder _weaponHolder, WeaponScriptable weaponScriptable)
     {
         weaponHolder = _weaponHolder;
+
+        if (weaponScriptable)
+        {
+            weaponStats = weaponScriptable.weaponStats;
+            weaponStats.totalBullets = weaponHolder.playerController.inventory.FindItem("AK-47").amountValue;
+        }
     }
 
     public virtual void StartFiringWeapon()
@@ -107,13 +113,13 @@ public class WeaponComponent : MonoBehaviour
         int bulletsToReload = weaponStats.clipSize - weaponStats.totalBullets;
         if (bulletsToReload < 0)
         {
-            weaponStats.totalBullets -= (weaponStats.clipSize - weaponStats.bulletsInClip);
+            weaponHolder.playerController.inventory.FindItem("AK-47").amountValue -= (weaponStats.clipSize - weaponStats.bulletsInClip);
             weaponStats.bulletsInClip = weaponStats.clipSize;
         }
         else
         {
-            weaponStats.bulletsInClip = weaponStats.totalBullets;
-            weaponStats.totalBullets = 0;
+            weaponStats.bulletsInClip = weaponStats.totalBullets = weaponHolder.playerController.inventory.FindItem("AK-47").amountValue;
+            weaponStats.totalBullets = weaponHolder.playerController.inventory.FindItem("AK-47").amountValue = 0;
         }
     }
     /*

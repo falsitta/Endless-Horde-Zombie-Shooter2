@@ -61,4 +61,5 @@ public class InventoryComponent : MonoBehaviour
         return itemCategory == ItemCategory.None ? Items : 
             Items.FindAll(item => item.itemCategory == itemCategory);
     }
+
 }

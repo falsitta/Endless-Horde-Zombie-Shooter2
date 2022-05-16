@@ -15,17 +15,19 @@ public class WeaponAmmoUI : MonoBehaviour
     /// set up events for onweaponequipped to handle the weapon component we grab
     /// </summary>
 
-    private void OnEnable()
+    private void Start()
     {
         PlayerEvents.OnWeaponEquipped += OnWeaponEquipped;
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
+        
         PlayerEvents.OnWeaponEquipped -= OnWeaponEquipped;
+        
     }
 
-    void OnWeaponEquipped(WeaponComponent _weaponComponent)
+    public void OnWeaponEquipped(WeaponComponent _weaponComponent)
     {
         weaponComponent = _weaponComponent;
     }
@@ -38,6 +40,6 @@ public class WeaponAmmoUI : MonoBehaviour
 
         weaponNameText.text = weaponComponent.weaponStats.weaponName;
         currentBulletCountText.text = weaponComponent.weaponStats.bulletsInClip.ToString();
-        totalBulletCountText.text = weaponComponent.weaponStats.totalBullets.ToString();
+        totalBulletCountText.text = weaponComponent.weaponHolder.playerController.inventory.FindItem("AK-47").amountValue.ToString();
     }
 }

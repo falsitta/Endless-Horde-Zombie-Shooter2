@@ -27,7 +27,17 @@ public class HealthComponent : MonoBehaviour, IDamageable
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
-            Destroy();
+            ///play death animation
+            ///load game over scene
+         //   Destroy();
+        }
+    }
+
+    public void HealPlayer(int value)
+    {
+        if (currentHealth < maxHealth)
+        {
+            currentHealth = Mathf.Clamp(currentHealth + value, 0, maxHealth);
         }
     }
 
